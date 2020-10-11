@@ -24,7 +24,13 @@ class IndexControllerTest {
     }
 
     @Test
-    void oupsHandler() {
-        assertTrue("notimplemented".equals(indexController.oupsHandler()), () -> "This is some expensive message to build for my test");
+    void oopsHandler() {
+        assertTrue("notimplemented".equals(indexController.oopsHandler()), () -> "This is some expensive message to build for my test");
+    }
+
+    @DisplayName("Test Exception")
+    @Test
+    void throwException() {
+        assertThrows(RuntimeException.class, () -> indexController.throwException());
     }
 }
