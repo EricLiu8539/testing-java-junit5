@@ -1,9 +1,6 @@
 package guru.springframework.sfgpetclinic.controllers;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.Duration;
 
@@ -49,5 +46,15 @@ class IndexControllerTest {
     void testTimeoutPrempt() {
         assertTimeoutPreemptively(Duration.ofMillis(100), () -> Thread.sleep(2000));
         System.out.println("testTimeoutPrempt Done");
+    }
+
+    @Test
+    void testAssumptionTrue() {
+        Assumptions.assumeTrue("GURU".equalsIgnoreCase(System.getenv("GURU_RUNTIME")));
+    }
+
+    @Test
+    void testAssumptionIsTrue() {
+        Assumptions.assumeTrue("GURU".equalsIgnoreCase("GURU"));
     }
 }
