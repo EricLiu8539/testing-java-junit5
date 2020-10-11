@@ -1,8 +1,11 @@
 package guru.springframework.sfgpetclinic.controllers;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,5 +35,19 @@ class IndexControllerTest {
     @Test
     void throwException() {
         assertThrows(RuntimeException.class, () -> indexController.throwException());
+    }
+
+    @Disabled(value = "Demo of timeout assertion")
+    @Test
+    void testTimeout() {
+        assertTimeout(Duration.ofMillis(100), () -> Thread.sleep(2000));
+        System.out.println("testTimeout Done");
+    }
+
+    @Disabled(value = "Demo of timeout assertion")
+    @Test
+    void testTimeoutPrempt() {
+        assertTimeoutPreemptively(Duration.ofMillis(100), () -> Thread.sleep(2000));
+        System.out.println("testTimeoutPrempt Done");
     }
 }
