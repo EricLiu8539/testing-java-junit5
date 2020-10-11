@@ -5,7 +5,9 @@ import org.junit.jupiter.api.condition.*;
 
 import java.time.Duration;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
 
 class IndexControllerTest {
 
@@ -22,6 +24,8 @@ class IndexControllerTest {
         assertEquals("index", indexController.index());
         assertEquals("index", indexController.index(),"Wrong View Returned");
         assertEquals("index", indexController.index(), () -> "Another expensive message, make me only if you have to");
+
+        assertThat(indexController.index()).isEqualTo("index");
     }
 
     @Test
@@ -51,12 +55,12 @@ class IndexControllerTest {
 
     @Test
     void testAssumptionTrue() {
-        Assumptions.assumeTrue("GURU".equalsIgnoreCase(System.getenv("GURU_RUNTIME")));
+        assumeTrue("GURU".equalsIgnoreCase(System.getenv("GURU_RUNTIME")));
     }
 
     @Test
     void testAssumptionIsTrue() {
-        Assumptions.assumeTrue("GURU".equalsIgnoreCase("GURU"));
+        assumeTrue("GURU".equalsIgnoreCase("GURU"));
     }
 
     @EnabledOnOs(OS.MAC)
